@@ -49,10 +49,31 @@ export const ContextMenu = ({
     handleCloseContextMenu();
   };
 
+  const findCorrectXPosition = () => {
+    const componentWidth = 200;
+
+    if (x + componentWidth > window.innerWidth) {
+      return x - componentWidth;
+    }
+
+    return x;
+  }
+
+  const findCorrectYPosition = () => {
+    const componentHeight = 130;
+
+    if (y + componentHeight > window.innerHeight) {
+      return y - componentHeight;
+    }
+
+    return y;
+  };
+
+
   return (
     <div
       ref={ref}
-      style={{ top: `${y}px`, left: `${x}px` }}
+      style={{ top: `${findCorrectYPosition()}px`, left: `${findCorrectXPosition()}px` }}
       className="absolute z-10 w-[200px] bg-white border border-gray-300 shadow-lg rounded-md overflow-hidden"
     >
       <ul className="flex flex-col items-start">
